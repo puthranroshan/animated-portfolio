@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .frog{
+            image-rendering: crisp-edges;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- svg stands for scalable vector graphics 
+        which creates a container for svg graphics 
+        viewbox is  just a attribute with minimum x coordinate =0 and minimum y co ordinate=0 ,width is 630 and height is 352units -->
+        <svg viewBox="0 0 630 352" xmlns="http://www.w3.org/2000/svg">
+
+            <!-- mask yenta madath andre it is used to hide or reveal an image -->
+          <mask id="m1">
+              <image class="m" xlink:href="https://assets.codepen.io/721952/liquidMask1.svg" y="-1" width="630" height="10620" />
+          </mask>
+          <mask id="m2">
+              <image class="m" xlink:href="https://assets.codepen.io/721952/liquidMask1.svg" y="-1" width="630" height="10620" />
+          </mask>
+
+          <!-- el nav yenta heltit andre nam image is masked by the mask id m2 -->
+          <image mask="url(#m2)" xlink:href="https://fronty.com/static/uploads/design_vs.jpg" width="630" height="420" />
+          <g mask="url(#m1)">
+            <image class="frog" xlink:href="https://fronty.com/static/uploads/design_vs.jpg" width="630" height="420" />
+          </g>
+        </svg>
+
+      </div>
+       
+      <!-- idh gsap librarry na include madath which is a javascript animation libarry -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+      <script>
+
+        //gasp indh object create madthe name timeline antha repeat -1 andre indefinatly repeat aatha irk
+        //repeatdelay 0 andre repeatation madya delay illa 
+        //yoyo true andre repaet reverse aatha irath
+        
+        //nan repeat delay 5 sec madde 
+        //and yoyo false madde aaga only main image 5 sec delay takntit ade yoyo true idre nam animation kuda 5sec delay aath
+        gsap.timeline({ repeat: -1, repeatDelay: 5, yoyo: false })
+          .to('.m', { duration: (i) => [0.8, 1.3][i], y: -10266, ease: 'steps(29)', stagger: -0.3 }, 0)
+          .to('.frog', { duration: 2, scale: 1.1, transformOrigin: '50% 50%', ease: 'power2', onComplete: swapMask }, 0);
+
+        let currentMask = 1;
+
+        // el total nam image ig 3 masks apply aath first mask value 1 irath next increse aatha aatha gsap.set indha mask change aatha irath 
+        // mask count 3 aadaga vapas 1 indha mask start aath aste
+        function swapMask() {
+          if (currentMask == 3)
+            currentMask = 1;
+          else
+            currentMask++;
+          gsap.set('.m', { attr: { 'xlink:href': 'https://assets.codepen.io/721952/liquidMask' + currentMask + '.svg' } });
+        }
+      </script>
+</body>
+</html>

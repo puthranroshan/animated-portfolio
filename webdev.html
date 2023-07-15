@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'Princess';
+            src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/PrincesSANDTHEFROG.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Princess';
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            height: 0px;
+            left: 0;
+            position: absolute;
+            right: 0;
+            margin: auto;
+        }
+
+        .container .wrap {
+            background: white;
+            position: absolute;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .container video {
+            mix-blend-mode: multiply;
+            top: calc(50% + 40px);
+            position: absolute;
+            left: 0;
+            width: 940px;
+            transform: translateY(-50%);
+            right: 0;
+            margin: auto;
+        }
+
+        .container img.a {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+
+        .container img.b {
+            position: absolute;
+            mix-blend-mode: exclusion;
+            width: 640px;
+            top: calc(50% - 40px);
+            transform: translateY(-50%);
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .container .wrap_inner {
+            position: absolute;
+            top: calc(50%);
+            text-align: center;
+            left: -69px;
+            right: 0;
+            mix-blend-mode: screen;
+            margin: auto;
+            width: 280px;
+            transform: translateY(-50%);
+        }
+
+        .container .wrap_inner h1 {
+            color: white;
+            font-weight: normal;
+            font-size: 15px;
+            opacity: 0;
+            transition: all 0.8s 0.2s;
+        }
+
+        .container .wrap_inner p {
+            color: white;
+            opacity: 0.6;
+            line-height: 18px;
+            font-size: 9px;
+            margin: 16px 0;
+            opacity: 0;
+            transition: all 0.8s 0.4s;
+        }
+
+        .container .wrap_inner img {
+            opacity: 0;
+            transition: all 0.8s 0.3s;
+        }
+
+        .container .wrap_inner a {
+            color: white;
+            font-size: 12px;
+            border-bottom: 1px solid white;
+            opacity: 0;
+            transition: all 0.8s 0.5s;
+        }
+
+        .button {
+            position: absolute;
+            z-index: 3;
+            color: white;
+            background: rgba(61, 21, 24, 0.54);
+            display: block;
+            width: 132px;
+            text-align: center;
+            border-radius: 2px;
+            top: 50%;
+            padding: 13px;
+            right: 0;
+            margin: auto;
+            transform: translateY(-50%);
+            font-size: 12px;
+            left: -90px;
+            cursor: pointer;
+            transition: background .7s;
+        }
+
+        .button:hover {
+            background: rgb(61, 21, 24);
+        }
+    </style>
+     <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrap">
+            <img class="a" src="web-dev.jpg">
+            <video id="myVideo" width="620" height="540" data-depth="50">
+                <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/ink4.mp4" type="video/mp4">
+            </video>
+            <img class="b" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/clockwork.png">
+            <div class="wrap_inner">
+                <div class="container_inner">
+                    <h1>Web Development</h1>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/trill.png">
+                    <p>
+                        Web development, also known as website development, refers to the tasks associated with creating,
+                         building, and maintaining websites and web applications that run online on a browser. It may, however,
+                          also include web design, web programming, and database management.
+                          </p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="button">click-Here</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var vid = document.getElementById("myVideo");
+
+        function playVid() {
+            vid.play();
+        }
+
+        $('.button').click(function () {
+            $(this).fadeOut(500);
+
+            setTimeout(function () {
+                playVid();
+            }, 800);
+
+            setTimeout(function () {
+                $('h1,.container_inner img,a').css('opacity', '1');
+                $('p').css('opacity', '.6');
+            }, 1700);
+        });
+    </script>
+
+    <script>
+
+          ScrollReveal().reveal(".a", {
+    delay: 200,
+    distance: "50px",
+    duration: 800,
+    origin: "top",
+    easing: "ease-out",
+    interval: 200,
+    opacity: 0,
+    reset: true
+  });
+
+        ScrollReveal().reveal(".button", {
+    delay: 700,
+    distance: "30%",
+    duration: 1000,
+    origin: "bottom",
+    easing: "cubic-bezier(0.5, 0, 0, 1)",
+    opacity: 0,
+    scale: 0.8,
+    mobile: false,
+    reset: true
+  });
+
+
+    </script>
+</body>
+
+</html>
